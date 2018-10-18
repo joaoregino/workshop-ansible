@@ -1,0 +1,16 @@
+---
+-
+  name: Segundo Playbook - trabalhando com loop
+  hosts: web
+  remote_user: ansible
+  become: yes
+  gather_facts: no
+  vars:
+   state: latest
+
+  tasks:
+  - name: Instalando Apache e PHP
+    yum: name={{ item }} state={{ state }}
+    with_items:
+      - httpd
+      - php

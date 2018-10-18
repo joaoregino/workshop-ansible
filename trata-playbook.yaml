@@ -1,0 +1,21 @@
+---
+- 
+  name: Trabalhando com variaveis 2
+  hosts: web
+  remote_user: ansible
+  become: yes
+
+- name: debug
+  hosts: all
+  tasks:
+       - name: Show hostvars[inventory_hostname]
+         debug: var=hostvars[inventory_hostname]
+
+       - name: Show ansible_ssh_host variable in hostvars
+         debug: var=hostvars[inventory_hostname].ansible_ssh_host
+
+       - name: Show group_names
+         debug: var=group_names
+
+       - name: Show groups
+         debug: var=groups

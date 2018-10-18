@@ -1,0 +1,12 @@
+---
+-
+   hosts: all
+   name: exemplo do uso playbook
+   vars:
+     user: joe
+   tasks:
+   # This line will read: Creates the user joe
+   - name: Creates the user {{ user }}
+     user:
+       # This line will create the user named Joe
+       name: "{{ user }}"

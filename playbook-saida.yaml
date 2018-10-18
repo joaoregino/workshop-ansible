@@ -1,0 +1,12 @@
+---
+-
+ name: Trabalhando com  saida de comandos
+ hosts: web
+ remote_user: ansible
+ become: yes
+
+- name: Saida do comando httpd
+  shell: httpd -v|grep version|awk '{print $3}'|cut -f2 -d'/'
+  register: result
+
+- debug: var=result

@@ -1,0 +1,21 @@
+---
+-
+ name: Trabalhando com Handlers
+ hosts: web
+ remote_user: ansible
+ become: yes
+
+ tasks:
+   - name: Testando handlers do Apache
+     yum: name={{ item }} state=installed
+     with_items:
+       - httpd
+       - memcached
+     notify: Restart Apache
+
+   - template: src=templates/httpd.conf dest=/etc/httpd/conf/httpd.conf
+     notify: Restart Apache
+
+ handlers:
+   - name: Restart Apache
+     service: name=httpd state=restarted
